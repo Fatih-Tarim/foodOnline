@@ -9,20 +9,17 @@ from django.dispatch import receiver
 def post_save_create_profile_reciever(sender, instance, created,**kwargs):
     if created:
         UserProfile.objects.create(user=instance)
-        print('User profile is created')
-    
     else:
         try:
             profile = UserProfile.objects.get(user=instance)
             profile.save()
         except:
             #Create the profile if not exist
-            UserProfile.objects.create(user=instance)
-            print('Profile was not exist, but i created one :)')
-        print('User Profile Updated')
+            UserProfile.objects.create(user=instance)        
 
 @receiver(pre_save, sender=User)
 def pre_save_profile_reciever(sender,instance, **kwargs):
-    print(instance.username, 'this user being saved')
+    pass
+    # print(instance.username, 'this user being saved')
 #post_save.connect(post_save_create_profile_reciever, User)
 

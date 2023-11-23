@@ -23,8 +23,10 @@ def registerUser(request):
             user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password)
             user.role = User.CUSTOMER
             user.save()
-            print('User is created')
             return redirect('registerUser')
+        else:
+            print('invalid form')
+            print(form.errors)
         
     else:
         form = UserForm()

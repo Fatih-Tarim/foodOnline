@@ -83,3 +83,18 @@ def registerVendor(request):
         'v_form': v_form
     }
     return render(request, template_name='accounts/registerVendor.html', context=context)
+
+
+def login(request):
+    form = UserForm()
+    context = {
+        'form': form,
+    }
+    return render(request, template_name="accounts/login.html", context=context)
+
+def logout(request):
+    return
+
+def dashboard(request):
+    return
+

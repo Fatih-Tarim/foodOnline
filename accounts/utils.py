@@ -4,6 +4,7 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.core.mail import EmailMessage
+from config import settings
 
 def detectUser(user):
     if user.role == 1:
@@ -17,6 +18,7 @@ def detectUser(user):
         return redirectUrl
 
 def send_verification_email(request, user):
+    from_email = settings.DEFAULT_FROM_EMAIL
     current_site = get_current_site(request)
     mail_subject = 'Please activate your account'
     message_body = render_to_string('accounts/emails/account_verification_email.html', {

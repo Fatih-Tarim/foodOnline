@@ -24,4 +24,4 @@ class UserProfileForm(forms.ModelForm):
     cover_photo = forms.ImageField(widget=forms.FileInput(attrs={'class': 'btn btn-info'}))
     class Meta:
         model = UserProfile
-        exclude = ('created_at', 'modified_at')
+        fields = ['profile_pic', 'cover_photo', 'address_line_1', 'address_line_2', 'country', 'state', 'city', 'pin_code', 'latitude', 'longitude']

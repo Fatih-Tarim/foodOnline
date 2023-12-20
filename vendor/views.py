@@ -11,6 +11,9 @@ from accounts.forms import UserProfileForm
 from accounts.models import UserProfile
 from accounts.views import check_role_vendor
 
+#Menu App
+from menu.models import Category
+
 
 
 @login_required(login_url='login')
@@ -42,3 +45,12 @@ def v_profile(request):
     }
     return render(request, 'vendor/v_profile.html', context)
 
+
+def menu_builder(request):
+    vendor = Vendor.objects.get(user=request.user)
+    categories = Category.objects.filter(vendor=vendor)
+    
+    context = {
+        'categories': categories,
+    }
+    return render(request, "vendor/menu_builder.html", context=context)

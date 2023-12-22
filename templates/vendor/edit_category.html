@@ -21,6 +21,7 @@
                         <div class="user-holder">
                             <h5 class="text-uppercase">Modify Your Category</h5>
                             <hr>
+                            <button class="btn btn-secondary mb-3" onclick="history.back()"><i class="fa fa-angle-left " aria-hidden="true"></i>&nbsp;Back</button>
                             <!-- RENDER FORM HERE -->
                             <form action="{% url 'edit_category' pk=category.id %}" method="POST" class="mb-3">
                                 {% csrf_token %}

@@ -125,7 +125,8 @@ def delete_category(request, pk=None):
     messages.success(request, "Category has been deleted successfuly")
     return redirect("menu_builder")
 
-
+@login_required(login_url='login')
+@user_passes_test(check_role_vendor)
 def add_food(request):
     if request.method == "POST":
         form = FoodForm(request.POST, request.FILES)
@@ -145,3 +146,34 @@ def add_food(request):
         'form': form,
     }
     return render(request, "vendor/add_food.html", context=context)
+
+@login_required(login_url='login')
+@user_passes_test(check_role_vendor)
+def edit_food(request, pk=None):
+    food = get_object_or_404(FoodItem, pk=pk)
+    if request.method == 'POST':
+        form = FoodForm(request.POST, request.FILES, instance=food)
+        if form.is_valid():
+            food_title = form.cleaned_data['food_title']
+            food = form.save(commit=False)
+            food.slug = slugify(food_title)
+            food.vendor = get_vendor(request)
+            form.save()
+            messages.success(request,"Food Updated Successfuly")
+            return redirect("fooditems_by_category", food.category.id)
+        else:
+            print(form.errors)
+    else:   
+        form = FoodForm(instance=food)
+
+    context = {
+        'form': form,
+        'food': food,
+    }
+    return render(request, "vendor/edit_food.html", context=context)
+
+def delete_food(request, pk=None):
+    food = get_object_or_404(FoodItem, pk=pk)
+    food.delete()
+    messages.success(request, "Food has been deleted !")
+    return redirect("fooditems_by_category", food.category.id)

@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     #Apps
     "accounts.apps.AccountsConfig",
     "vendor.apps.VendorConfig",
-    "menu.apps.MenuConfig"
+    "menu.apps.MenuConfig",
+    "marketplace.apps.MarketplaceConfig"
 ]
 
 MIDDLEWARE = [

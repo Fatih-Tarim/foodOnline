@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.db.models import Prefetch
@@ -32,3 +33,7 @@ def vendor_detail(request, vendor_slug=None):
         # 'foods': foods,
     }
     return render(request, 'marketplace/vendor_detail.html', context)
+
+def add_to_cart(request, food_id):
+    return HttpResponse(food_id)
+

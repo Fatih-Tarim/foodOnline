@@ -68,7 +68,7 @@ def add_to_cart(request, food_id):
 
     else:
         return JsonResponse({
-            'status': 'Failed',
+            'status': 'login_required',
             'message': 'Please login to continue'
         })
     
@@ -98,7 +98,7 @@ def decrease_cart(request, food_id):
 
     else:
         return JsonResponse({
-            'status': 'Failed',
+            'status': 'login_required',
             'message': 'Please login to continue'
         })
 

@@ -42,15 +42,6 @@ function onPlaceChanged (){
             $('#id_address').val(address);
         }
     });
-    // loop through the address components and assign other adress data
-    // for(var i = 0; i < place.address_components.lenght; i++){
-    //     for(j=0; j<place.address_components[i].types.lenght; j++){
-    //         //get country
-    //         if(place.address_components[i].types[j] == 'country'){
-    //             $('#id_country').val(place.address_components[i].long_name);
-    //         }
-    //     }
-    // };
 
     for(var i=0; i<place.address_components.length; i++){
         for(var j=0; j<place.address_components[i].types.length; j++){
@@ -91,8 +82,12 @@ $(document).ready(function(){
             url: url,
             success: function(response){
                 console.log(response)
-                if(response.status == "Failed"){
-                    console.log('raise the error message')
+                if(response.status == "login_required"){
+                    swal(response.message,'','info').then(function(){
+                        window.location = '/login';
+                    })
+                }else if(response.status == "Failed"){
+                    swal(response.message,'','error')
                 }else{       
                     $('#cart_counter').html(response.cart_counter['cart_count'])
                     $('#qty-'+food_id).html(response.qty)
@@ -120,8 +115,12 @@ $(document).ready(function(){
             url: url,
             success: function(response){
                 console.log(response)
-                if(response.status == "Failed"){
-                    console.log(response)
+                if(response.status == "login_required"){
+                    swal(response.message,'','info').then(function(){
+                        window.location = '/login';
+                    })
+                }else if(response.status == "Failed"){
+                    swal(response.message,'','error')
                 }else{       
                     $('#cart_counter').html(response.cart_counter['cart_count'])
                     $('#qty-'+food_id).html(response.qty)

@@ -128,6 +128,45 @@ $(document).ready(function(){
             }
         })
     })
+
+    //Delete cart item
+    $('.delete_cart').on('click', function(e){
+        e.preventDefault();
+        
+        cart_id = $(this).attr('data-id');
+        url = $(this).attr('data-url');
+        
+        
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(response){
+                console.log(response)
+                if(response.status == 'Failed'){
+                    swal(response.message, '', 'error')
+                }else{
+                    $('#cart_counter').html(response.cart_counter['cart_count']);
+                    swal(response.status, response.message, "success")
+                    removeCartItem(0, cart_id);
+                    checkEmptyCart();
+                } 
+            }
+        })
+    })
+
+    //Delete the cart element if the quantity=0
+    function removeCartItem(cartItemQty, cart_id){
+        if (cartItemQty <= 0){
+            //Remove the cart item element
+            document.getElementById("cart-item-" + cart_id).remove()
+        }
+    }
+    function checkEmptyCart(){
+        var cart_counter = document.getElementById('cart_counter').innerHTML
+        if (cart_counter == 0){
+            document.getElementById('empty-cart').style.display = "block";
+        }
+    }
 });
 
 

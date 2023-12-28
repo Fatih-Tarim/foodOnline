@@ -63,6 +63,7 @@ TEMPLATES = [
                 "accounts.context_processors.get_vendor",
                 "accounts.context_processors.get_google_api_key",
                 "marketplace.context_processors.get_card_counter",
+                "marketplace.context_processors.get_cart_amount",
             ],
         },
     },

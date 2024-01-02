@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "vendor.apps.VendorConfig",
     "menu.apps.MenuConfig",
-    "marketplace.apps.MarketplaceConfig"
+    "marketplace.apps.MarketplaceConfig",
+    "django.contrib.gis",
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,8 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        # "ENGINE": "django.db.backends.postgresql",
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         "NAME": config('DB_NAME', cast=str),
         "USER": config('DB_USER', cast=str),
         "PASSWORD": config('DB_PASSWORD', cast=str),

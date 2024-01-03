@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from config.utils import get_or_set_current_location
+
 #Vendor App
 from vendor.models import Vendor
 
@@ -11,12 +13,10 @@ from django.contrib.gis.db.models.functions import Distance
 
 
 
-def home(request):
-    if 'lat' and 'lng' in request.GET:
-        lat = request.GET.get('lat')
-        lng = request.GET.get('lng')
 
-        point = GEOSGeometry('POINT(%s %s)' %(lng, lat))
+def home(request):
+    if get_or_set_current_location(request):
+        point = GEOSGeometry('POINT(%s %s)' %(get_or_set_current_location(request)))
         vendors = Vendor.objects.filter(user_profile__location__distance_lte=(point, D(km=10))).annotate(distance=Distance("user_profile__location", point)).order_by("distance")
 
         for vendor in vendors:

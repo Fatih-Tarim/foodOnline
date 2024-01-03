@@ -87,9 +87,9 @@
 										<figure>
 											
 											{% if item.user_profile.profile_pic %}
-												<a href="#"><img src="{{item.user_profile.profile_pic.url}}" class="attachment-full size-full wp-post-image" alt=""></a>
+												<a href="{% url 'vendor_detail' item.vendor_slug %}"><img src="{{item.user_profile.profile_pic.url}}" class="attachment-full size-full wp-post-image" alt=""></a>
 											{% else %}
-												<a href="#"><img src="{% static 'images/default-profile.png' %}" class="attachment-full size-full wp-post-image" alt=""></a>
+												<a href="{% url 'vendor_detail' item.vendor_slug %}"><img src="{% static 'images/default-profile.png' %}" class="attachment-full size-full wp-post-image" alt=""></a>
 											{% endif %}
 												
 										</figure>
@@ -121,7 +121,7 @@
 										<div class="list-post featured">
 											<div class="img-holder">
 												<figure>
-													<a href="#">
+													<a href="{% url 'vendor_detail' item.vendor_slug %}">
 														{% if item.user_profile.profile_pic %}
 															<img src="{{ item.user_profile.profile_pic.url }}" class="img-thumb wp-post-image" alt="">
 														{% else %}
@@ -136,7 +136,7 @@
 											<div class="text-holder">
 												<div class="post-title">
 													<h5>
-														<a href="listing-detail.html">{{item.vendor_name}}</a>
+														<a href="{% url 'vendor_detail' item.vendor_slug %}">{{item.vendor_name}}</a>
 														<span class="sponsored text-color">Sponsored</span>
 													</h5>
 												</div>

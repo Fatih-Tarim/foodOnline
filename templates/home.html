@@ -144,8 +144,12 @@
 												{% if item.user_profile.city and  item.user_profile.state and item.user_profile.pin_code %}
 													<span>{{item.user_profile.city}}, {{item.user_profile.state}}, {{item.user_profile.pin_code}}</span>											
 												{% endif %}
-													
 												
+												{% if vendors.kms %}
+													<br>
+													<span><small><b>{{vendors.kms}}km away</b></small></span>
+												{% endif %}
+													
 											</div>
 											
 										</div>

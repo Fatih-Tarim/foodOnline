@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.template.defaultfilters import slugify
 
 #Vendor App
-from vendor.forms import VendorForm
+from vendor.forms import VendorForm, OpeningHourForm
+from vendor.models import OpeningHour
 
 #Account App
 from accounts.forms import UserProfileForm
@@ -183,3 +184,12 @@ def delete_food(request, pk=None):
     food.delete()
     messages.success(request, "Food has been deleted !")
     return redirect("fooditems_by_category", food.category.id)
+
+def opening_hours(request):
+    opening_hours = OpeningHour.objects.filter(vendor=get_vendor(request))
+    form = OpeningHourForm()
+    context = {
+        'form': form,
+        'opening_hours': opening_hours,
+    }
+    return render(request, 'vendor/opening_hours.html', context)

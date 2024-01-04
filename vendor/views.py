@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.template.defaultfilters import slugify
+from django.http import HttpResponse
 
 #Vendor App
 from vendor.forms import VendorForm, OpeningHourForm
@@ -193,3 +194,22 @@ def opening_hours(request):
         'opening_hours': opening_hours,
     }
     return render(request, 'vendor/opening_hours.html', context)
+
+def add_opening_hours(request):
+    #handle the data and save them inside the database
+    # if request.method == "POST":
+    #     form = OpeningHourForm(request.POST)
+    #     if form.is_valid():
+    #         commit = form.save(commit=False)
+    #         commit.vendor = get_vendor(request)
+    #         form.save()
+    #         messages.success(request, "Hours saved")
+    #     else:
+    #         messages.error(request, 'Hours failed')
+    # else:
+    #     form = OpeningHourForm()
+
+    # return redirect("opening_hours")
+    return HttpResponse("add_opening hours")
+
+

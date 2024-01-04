@@ -28,7 +28,7 @@
                                         <tr>
                                             <td><b>{{item}}</b></td>
                                             <td>{% if item.is_closed %} Closed {% else %} {{item.from_hour}} - {{item.to_hour}} {% endif %} </td>
-                                            <td><a href="#">Remove</a></td>
+                                            <td><a href="">Remove</a></td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
@@ -37,8 +37,9 @@
                             <br>
                             <br>
                             <form id="opening_hours">
+                                {% csrf_token %}
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         {{form.day}}
                                     </div>
                                     <div class="col-md-2">
@@ -51,7 +52,8 @@
                                         {{form.is_closed}} Set as closed?
                                     </div>
                                     <div class="col-md-2">
-                                        <button class="btn btn-success">Add Hour</button>
+                                        <input type="hidden" value="{% url 'add_opening_hours' %}" id="add_hour_url">
+                                        <button class="btn btn-success add_hour">Add Hour</button>
                                     </div>
                                 </div>
                             </form>

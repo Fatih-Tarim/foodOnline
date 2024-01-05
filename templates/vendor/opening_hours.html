@@ -25,10 +25,10 @@
                             <table class="table opening-hours" style="width: 500px; border:none;">
                                 <tbody>
                                     {% for item in opening_hours %}
-                                        <tr>
+                                        <tr id="hour-{{item.id}}">
                                             <td><b>{{item}}</b></td>
                                             <td>{% if item.is_closed %} Closed {% else %} {{item.from_hour}} - {{item.to_hour}} {% endif %} </td>
-                                            <td><a href="">Remove</a></td>
+                                            <td><a href="#" class="delete_hour" data-url="{% url 'delete_opening_hours' item.id %}">Remove</a></td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

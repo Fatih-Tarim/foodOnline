@@ -198,6 +198,7 @@ $(document).ready(function(){
         }
     }
 
+    //ADD Opening Hour
     $('.add_hour').on('click',function(e){
         e.preventDefault();
         var day = document.getElementById('id_day').value
@@ -231,9 +232,9 @@ $(document).ready(function(){
                 success: function(response){
                     if (response.status == "success"){
                         if (response.is_closed == 'Closed'){
-                            html = '<tr><td><b>'+response.day+'</b></td><td>Closed</td><td><a href="">Remove</a></td></tr>';
+                            html = '<tr id="hour-'+response.id+'"><td><b>'+response.day+'</b></td><td>Closed</td><td><a href="" class="delete-hour" data-url="/vendor/opening-hours/delete/'+response.id+'/">Remove</a></td></tr>';
                         }else{
-                            html = '<tr><td><b>'+response.day+'</b></td><td>'+response.from_hour +' - '+response.to_hour+'</td><td><a href="">Remove</a></td></tr>';
+                            html = '<tr id="hour-'+response.id+'"><td><b>'+response.day+'</b></td><td>'+response.from_hour +' - '+response.to_hour+'</td><td><a href="" class="delete-hour" data-url="/vendor/opening-hours/delete/'+response.id+'/">Remove</a></td></tr>';
                         }
                         $('.opening-hours').append(html)
                         document.getElementById("opening_hours").reset()
@@ -247,10 +248,23 @@ $(document).ready(function(){
         }
         
 
+    });
+
+    //REMOVE Opening Hour
+    $(document).on('click', '.delete_hour',function(e){
+        e.preventDefault()
+        url = $(this).attr('data-url');
+        console.log(url)
+        $.ajax({
+            'type': 'GET',
+            'url': url,
+            'success': function(response){
+                if (response.status == "success"){
+                    document.getElementById('hour-'+response.id).remove()
+                }
+            }
+        })
     })
-
-
-
 
     //document ready close
 });

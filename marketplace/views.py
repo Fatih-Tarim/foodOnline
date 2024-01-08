@@ -4,7 +4,9 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Prefetch
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from datetime import date
+
+#Datetime
+from datetime import date,datetime
 
 #Gis
 from django.contrib.gis.geos import GEOSGeometry
@@ -56,7 +58,7 @@ def vendor_detail(request, vendor_slug=None):
         'categories': categories,
         'cart_items': cart_items,
         'opening_hours': opening_hours,
-        'current_opening_hours': current_opening_hours
+        'current_opening_hours': current_opening_hours,
     }
     return render(request, 'marketplace/vendor_detail.html', context)
 

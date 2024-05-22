@@ -1,6 +1,6 @@
 asgiref==3.7.2
 Django==4.2.7
-GDAL @ file:///D:/Django/foodOnline/GDAL-3.4.3-cp39-cp39-win_amd64.whl#sha256=d4f3650d26884da20bde7f33a542b02bfae7ccc017d44a9e6cf5600b84304878
+GDAL @ file:///C:\Users\Fatih\Desktop\foodOnline/GDAL-3.4.3-cp39-cp39-win_amd64.whl#sha256=d4f3650d26884da20bde7f33a542b02bfae7ccc017d44a9e6cf5600b84304878
 Pillow==10.1.0
 psycopg2==2.9.9
 python-decouple==3.8

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "marketplace.apps.MarketplaceConfig",
     "django.contrib.gis",
     "customers.apps.CustomersConfig",
+    "orders.apps.OrdersConfig",
 ]
 
 MIDDLEWARE = [
@@ -161,6 +162,6 @@ DEFAULT_FROM_EMAIL = "foodOnline Marketplace"
 GOOGLE_API_KEY = 'AIzaSyBq7BbQjjAetqZsiCUdZzBPDptmjGY5VBQ'
 
 
-os.environ['PATH'] = os.path.join(BASE_DIR, 'env\Lib\site-packages\osgeo') + ';' + os.environ['PATH']
-os.environ['PROJ_LIB'] = os.path.join(BASE_DIR, 'env\Lib\site-packages\osgeo\data\proj') + ';' + os.environ['PATH']
-GDAL_LIBRARY_PATH = os.path.join(BASE_DIR, 'env\Lib\site-packages\osgeo/gdal304.dll')
+os.environ['PATH'] = os.path.join(BASE_DIR, '.venv\Lib\site-packages\osgeo') + ';' + os.environ['PATH']
+os.environ['PROJ_LIB'] = os.path.join(BASE_DIR, '.venv\Lib\site-packages\osgeo\data\proj') + ';' + os.environ['PATH']
+GDAL_LIBRARY_PATH = os.path.join(BASE_DIR, '.venv\Lib\site-packages\osgeo/gdal304.dll')

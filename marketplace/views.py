@@ -26,6 +26,9 @@ from marketplace.models import Cart
 #Marketplace App
 from marketplace.context_processors import get_card_counter, get_cart_amount
 
+#Order App
+from orders.forms import OrderForm
+
 
 def marketplace(request):
     vendors = Vendor.objects.filter(is_approved=True, user__is_active=True)
@@ -173,5 +176,9 @@ def search(request):
         return render(request, "marketplace/listings.html", context)
     
 def checkout(request):
-    return render(request, 'marketplace/checkout.html')
+    form = OrderForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'marketplace/checkout.html', context=context)
 

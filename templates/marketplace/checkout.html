@@ -90,7 +90,6 @@
 
                                     <div id="menu-item-list-6272" class="menu-itam-list">
                                         <ul>
-                                            {% if cart_items %}
                                                 {% for item in cart_items %}
                                                 <li id="cart-item-{{item.id}}">
                                                     <div class="image-holder"> <img src="{{ item.fooditem.image.url }}" alt=""></div>
@@ -107,7 +106,6 @@
                                                     </div>
                                                 </li>
                                                 {% endfor %}
-                                            {% endif %}
                                         </ul>
                                     </div>
 
@@ -141,7 +139,20 @@
                                                     <span id="total">{{grand_total}}</span>
                                                 </span>
                                             </li>
-
+                                            <!-- Select payment method -->
+                                            <h5>SELECT PAYMENT METHOD</h5>
+                                            <div class="payment-method">
+                                                <label>
+                                                    <input type="radio" name="payment_method" value="PayPal">
+                                                    <img src="{% static 'images/PayPal.png' %}" alt="PayPal" style="width: 100px;">
+                                                </label>
+                                                &emsp;
+                                                <label>
+                                                    <input type="radio" name="payment_method" value="PayPal">
+                                                    <img src="{% static 'images/mastercard.png' %}" alt="Mastercard" style="width: 120px; height: 60px;">
+                                                </label>
+                                            </div>
+                                            <!-- Select payment method -->
                                             <button type="submit" class="btn btn-danger w-100 p-2 mt-3">PLACE ORDER</button>
 
                                         </ul>

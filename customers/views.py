@@ -7,6 +7,9 @@ from django.contrib import messages
 from accounts.forms import UserProfileForm, UserInfoForm
 from accounts.models import UserProfile
 
+#Order App
+from orders.models import Order
+
 @login_required(login_url='login')
 def cprofile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -32,3 +35,10 @@ def cprofile(request):
         'profile': profile,
     }
     return render(request, "customers/cprofile.html", context)
+
+def myOrders(request):
+    orders = Order.objects.filter(user= request.user, is_ordered=True).order_by('-created_at')
+    context={
+        'orders': orders,
+    }
+    return render(request, 'customers/my_orders.html', context=context)

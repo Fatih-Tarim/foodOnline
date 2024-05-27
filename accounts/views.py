@@ -16,6 +16,9 @@ from accounts.utils import detectUser, send_verification_email
 from vendor.forms import VendorForm
 from vendor.models import Vendor
 
+#Order App
+from orders.models import Order
+
 #Restrict the vendor from accessing the customer page 
 def check_role_vendor(user):
     if user.role == 1:
@@ -178,7 +181,12 @@ def myAccount(request):
 @login_required(login_url="login")
 @user_passes_test(check_role_customer)
 def customerDashboard(request):
-    return render(request, "accounts/customerDashboard.html")
+    orders = Order.objects.filter(user=request.user, is_ordered=True)[:5]
+    context = {
+        'orders': orders,
+        'orders_count': orders.count(),
+    }
+    return render(request, "accounts/customerDashboard.html", context=context)
 
 @login_required(login_url="login")
 @user_passes_test(check_role_vendor)
